@@ -30,14 +30,24 @@ def signup():
     return home()
 
 
-@app.route('/logged-in')
+@app.route('/logged-in', methods=['GET', 'POST'])
 def logged_in():
-    return render_template('logged.html')
+    try:
+        return render_template('logged.html')
+    except:
+
+        edit(request.form['username'],request.form['fav_food'])
+
+
+
+    #return render_template('logged.html')
 
 
 @app.route('/logout')
 def logout():
+    login_session["logged_in"] = False
     return home()
+
 
 
 
